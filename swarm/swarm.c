@@ -9,6 +9,7 @@
 #include "libp2p/net/connectionstream.h"
 #include "libp2p/swarm/swarm.h"
 #include "libp2p/utils/logger.h"
+#include "libp2p/net/multistream.h"
 
 /**
  * Helps pass information to a new thread
@@ -139,8 +140,8 @@ int libp2p_swarm_add_connection(struct SwarmContext* context, int file_descripto
 		return 0;
 	}
     session->port = port;
-    session->insecure_stream = libp2p_net_connection_new(file_descriptor, session->host, session->port, session);
-    session->default_stream = session->insecure_stream;
+    session->insecure_stream = libp2p_net_connection_established(file_descriptor, session->host, session->port, session);
+    session->default_stream = libp2p_net_multistream_stream_new(session->insecure_stream, 0);
 
     struct SwarmSession* swarm_session = (struct SwarmSession*) malloc(sizeof(struct SwarmSession));
     swarm_session->session_context = session;
