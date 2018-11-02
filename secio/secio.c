@@ -68,9 +68,6 @@ int libp2p_secio_handle_message(const struct StreamMessage* msg, struct Stream* 
 	// have we not already started negotiating?
 	if (stream->stream_type != STREAM_TYPE_SECIO) {
 		secio_stream = libp2p_secio_stream_new(stream, ctx->peer_store, ctx->private_key);
-		// send them the protocol
-		if (!libp2p_secio_send_protocol(stream))
-			return -1;
 	} else {
 		secio_stream = stream;
 	}
