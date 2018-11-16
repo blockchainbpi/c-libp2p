@@ -43,8 +43,13 @@ int libp2p_secio_can_handle(const struct StreamMessage* msg) {
 	if (msg->data_size < 12)
 		return 0;
 	char* result = strnstr((char*)msg->data, protocol, msg->data_size);
-	if (result != NULL && result == (char*)msg->data)
-		return 1;
+	if (result != NULL) {
+		if (result == (char*)msg->data)
+			return 1;
+		// may have come with "protocol + LF" length in the first byte.
+		if (result == (char*)msg->data+1 && msg->data[0] == strlen(protocol)+1)
+			return 1;
+	}
 	return 0;
 }
 
