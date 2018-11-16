@@ -73,7 +73,24 @@ int libp2p_net_connection_read(void* stream_context, struct StreamMessage** msg,
 	uint8_t* result_buffer = NULL;
 	int current_size = 0;
 	while (1) {
-		int retVal = socket_read(ctx->socket_descriptor, (char*)&buffer[0], 4096, 0, timeout_secs);
+		int retVal;
+		if (current_size) {
+			retVal = socket_read(ctx->socket_descriptor, (char*)&buffer[0], sizeof(buffer), 0, timeout_secs);
+		} else {
+			// initial reading, see if it is a protocol request with length.
+			retVal = socket_read(ctx->socket_descriptor, (char*)&buffer[0], 2, 0, timeout_secs);
+			if (retVal == 2) {
+				if (buffer[0] > 0 && buffer[1] == '/') {
+					// if the second byte is a slash, it may be a protocol message with a length in the first byte.
+					retVal = socket_read(ctx->socket_descriptor, (char*)&buffer[2], buffer[0]-1, 0, timeout_secs);
+				} else {
+					// if it isn't, read as much as possible.
+					retVal = socket_read(ctx->socket_descriptor, (char*)&buffer[2], sizeof(buffer)-2, 0, timeout_secs);
+				}
+				if (retVal > 0)
+					retVal += 2; // compensate the first read.
+			}
+		}
 		ctx->last_comm_epoch = time(NULL);
 		libp2p_logger_debug("connectionstream", "Retrieved %d bytes from socket %d.\n", retVal, ctx->socket_descriptor);
 		if (retVal < 1) { // get out of the loop
