@@ -22,7 +22,7 @@ OBJS = \
 	swarm/*.o \
 	yamux/*.o
 
-link: 
+link: compile
 	ar rcs libp2p.a $(OBJS) $(LINKER_FLAGS)
 
 compile:
@@ -41,14 +41,14 @@ compile:
 	cd swarm; make all;
 	cd utils; make all;
 	cd yamux; make all;
-	
+
 test: compile link
 	cd test; make all;
-	
+
 rebuild: clean all
-	
+
 all: test
-	
+
 clean:
 	cd conn; make clean;
 	cd crypto; make clean;
