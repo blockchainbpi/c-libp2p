@@ -3,7 +3,7 @@ DEBUG = true
 export DEBUG
 
 ROOT= $(shell pwd)
-export INCLUDE = -I$(ROOT)/include -I$(ROOT)/../c-protobuf -I$(ROOT)/../c-multihash/include -I$(ROOT)/../c-multiaddr/include
+export INCLUDE = -I$(ROOT)/include -I$(ROOT)/c-protobuf -I$(ROOT)/c-multihash/include -I$(ROOT)/c-multiaddr/include
 
 OBJS = \
 	conn/*.o \
