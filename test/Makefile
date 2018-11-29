@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -O0 -I../include -I. -I../../c-multihash/include -I../../c-multiaddr/include -std=c11
+CFLAGS = $(INCLUDE) -O0 -std=c11
 
 ifdef DEBUG
 CFLAGS += -g3
@@ -14,7 +14,7 @@ OBJS = testit.o ../../c-protobuf/protobuf.o ../../c-protobuf/varint.o ../libp2p.
 
 testit_libp2p: $(OBJS) $(DEPS)
 	$(CC) -o $@ $(OBJS) $(LFLAGS) -lp2p -lm -lmultihash -lmultiaddr -lpthread
-	
+
 all_others:
 	cd ../crypto; make all;
 	cd ../thirdparty; make all;

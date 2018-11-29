@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -O0 -Wall -I../include -I../../c-protobuf -I../../c-multiaddr/include 
+CFLAGS = $(INCLUDE) -O0 -Wall
 
 ifdef DEBUG
 CFLAGS += -g3

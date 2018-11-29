@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -O0 -I../include -g3
+CFLAGS = $(INCLUDE) -O0 -g3
 LFLAGS =
 DEPS = 
 OBJS = hashmap.o
@@ -7,7 +7,6 @@ OBJS = hashmap.o
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-	
 all: $(OBJS)
 
 clean:
