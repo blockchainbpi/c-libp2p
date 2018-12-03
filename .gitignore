@@ -6,3 +6,5 @@
 .settings/language.settings.xml
 *.a
 test/testit_libp2p
+cscope.files
+cscope.out
