@@ -1,11 +1,8 @@
-CC = gcc
-CFLAGS = $(INCLUDE) -O0 -g3 -std=c99
-LFLAGS =
 DEPS = 
 OBJS = datastore.o filestore.o
 
 %.o: %.c $(DEPS)
-	$(CC) -c -o $@ $< $(CFLAGS)
+	$(CC) -c -o $@ $< $(CFLAGS) -std=c99
 
 all: $(OBJS)
 

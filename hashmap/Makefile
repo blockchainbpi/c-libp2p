@@ -1,6 +1,3 @@
-CC = gcc
-CFLAGS = $(INCLUDE) -O0 -g3
-LFLAGS =
 DEPS = 
 OBJS = hashmap.o
 

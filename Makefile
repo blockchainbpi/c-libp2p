@@ -1,10 +1,15 @@
 COMPONENTS = conn crypto db thirdparty hashmap identify net os peer record routing secio swarm utils yamux
 
-DEBUG = true
-export DEBUG
+export DEBUG = true
 
 ROOT= $(shell pwd)
 export INCLUDE = -I$(ROOT)/include -I$(ROOT)/c-protobuf -I$(ROOT)/c-multihash/include -I$(ROOT)/c-multiaddr/include
+export CFLAGS = $(INCLUDE) -Wall -O0
+
+ifdef DEBUG
+CFLAGS += -g3
+endif
+
 
 OBJS = $(shell (find $(COMPONENTS) -name *.o))
 
@@ -23,3 +28,4 @@ all: test
 
 clean:
 	$(foreach dir,$(COMPONENTS), $(MAKE) -C $(dir) clean ;)
+	make -C test clean

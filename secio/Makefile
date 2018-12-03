@@ -1,16 +1,8 @@
-CC = gcc
-CFLAGS = $(INCLUDE) -O0 -Wall -std=c99
-
-ifdef DEBUG
-CFLAGS += -g3
-endif
-
-LFLAGS = 
 DEPS = 
 OBJS = exchange.o propose.o secio.o
 
 %.o: %.c $(DEPS)
-	$(CC) -c -o $@ $< $(CFLAGS)
+	$(CC) -c -o $@ $< $(CFLAGS) -std=c99
 
 all: $(OBJS)
 

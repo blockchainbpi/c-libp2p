@@ -1,16 +1,8 @@
-CC = gcc
-CFLAGS = $(INCLUDE) -O0 -Wall -Werror -std=c11
-
-ifdef DEBUG
-CFLAGS += -g3
-endif
-
-LFLAGS = 
 DEPS = 
 OBJS = identify.o
 
 %.o: %.c
-	$(CC) -c -o $@ $< $(CFLAGS)
+	$(CC) -c -o $@ $< $(CFLAGS) -std=c11
 
 all: $(OBJS)
 

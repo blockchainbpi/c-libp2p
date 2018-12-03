@@ -1,11 +1,3 @@
-CC = gcc
-CFLAGS = $(INCLUDE) -O0 -Wall
-
-ifdef DEBUG
-CFLAGS += -g3
-endif
-
-LFLAGS = 
 DEPS = 
 OBJS = nodeio.o
 

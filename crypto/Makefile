@@ -1,6 +1,3 @@
-CC = gcc
-export CFLAGS = $(INCLUDE) -O0 -g3
-LFLAGS =
 DEPS = 
 OBJS = rsa.o sha256.o sha512.o sha1.o key.o peerutils.o ephemeral.o aes.o
 

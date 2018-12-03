@@ -1,12 +1,9 @@
 DHT_DIR = dht
-CC = gcc
-CFLAGS = $(INCLUDE) -I$(DHT_DIR) -O0 -g3
-LFLAGS =
 DEPS = # $(DHT_DIR)/dht.h
 OBJS = kademlia.o dht.o dht_protocol.o
 
 %.o: %.c $(DEPS)
-	$(CC) -c -o $@ $< $(CFLAGS)
+	$(CC) -c -o $@ $< $(CFLAGS) -I$(DHT_DIR) 
 
 all: $(OBJS)
 
