@@ -21,8 +21,8 @@ link: compile
 compile:
 	$(foreach dir,$(COMPONENTS), $(MAKE) -C $(dir) all ;)
 
-test: compile link
-	cd test; make all;
+test: link
+	make -C test all;
 
 rebuild: clean all
 
