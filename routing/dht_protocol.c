@@ -334,7 +334,6 @@ int libp2p_routing_dht_handle_add_provider(struct Stream* stream, struct Kademli
 int libp2p_routing_dht_handle_get_value(struct Stream* stream, struct KademliaMessage* message, struct DhtContext* dht_context,
 		unsigned char** result_buffer, size_t *result_buffer_size) {
 
-	struct Datastore* datastore = dht_context->datastore;
 	struct Filestore* filestore = dht_context->filestore;
 	size_t data_size = 0;
 	unsigned char* data = NULL;

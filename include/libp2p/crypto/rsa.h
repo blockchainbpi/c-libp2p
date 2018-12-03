@@ -4,7 +4,7 @@
 #include <stddef.h>
 
 struct RsaPublicKey {
-	char* der;
+	unsigned char* der;
 	size_t der_length;
 };
 
@@ -20,7 +20,7 @@ struct RsaPrivateKey {
 	unsigned long long N;
 	// the keys in DER format
 	// private
-	char* der;
+	unsigned char* der;
 	size_t der_length;
 	// public
 	char* public_key_der;
