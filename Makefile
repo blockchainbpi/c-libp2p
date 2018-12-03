@@ -13,6 +13,8 @@ endif
 
 OBJS = $(shell (find $(COMPONENTS) -name *.o))
 
+all: test
+
 link: compile
 	$(AR) rcs libp2p.a $(OBJS) $(LINKER_FLAGS)
 
@@ -23,8 +25,6 @@ test: compile link
 	cd test; make all;
 
 rebuild: clean all
-
-all: test
 
 clean:
 	$(foreach dir,$(COMPONENTS), $(MAKE) -C $(dir) clean ;)
