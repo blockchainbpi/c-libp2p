@@ -1,11 +1,3 @@
-CC = gcc
-CFLAGS = -O0 -Wall -I../include -I../../c-protobuf
-
-ifdef DEBUG
-CFLAGS += -g3
-endif
-
-LFLAGS = 
 DEPS = 
 OBJS = nodeio.o
 

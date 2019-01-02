@@ -314,7 +314,7 @@ int libp2p_secio_verify_signature(struct PublicKey* public_key, const unsigned c
 
 	if (public_key->type == KEYTYPE_RSA) {
 		struct RsaPublicKey rsa_key = {0};
-		rsa_key.der = (char*)public_key->data;
+		rsa_key.der = public_key->data;
 		rsa_key.der_length = public_key->data_size;
 		return libp2p_crypto_rsa_verify(&rsa_key, in, in_length, signature);
 	}
@@ -335,7 +335,7 @@ int libp2p_secio_sign(struct PrivateKey* private_key, const char* in, size_t in_
 
 	if (private_key->type == KEYTYPE_RSA) {
 		struct RsaPrivateKey rsa_key = {0};
-		rsa_key.der = (char*)private_key->data;
+		rsa_key.der = private_key->data;
 		rsa_key.der_length = private_key->data_size;
 		int retVal = libp2p_crypto_rsa_sign(&rsa_key, in, in_length, signature, signature_size);
 		// debugging
