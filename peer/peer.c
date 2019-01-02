@@ -256,9 +256,7 @@ int libp2p_peer_protobuf_decode(unsigned char* in, size_t in_size, struct Libp2p
 	int retVal = 0;
 	char* buffer = NULL;
 	size_t buffer_size = 0;
-	struct Libp2pLinkedList* current = NULL;
 	struct Libp2pLinkedList* last = NULL;
-	struct MultiAddress* ma = NULL;
 
 	*out = libp2p_peer_new();
 	if ( *out == NULL)

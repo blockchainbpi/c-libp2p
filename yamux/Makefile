@@ -1,16 +1,8 @@
-CC = gcc
-CFLAGS = -O0 -Wall -Werror -I../include -I../../c-protobuf -std=c11
-
-ifdef DEBUG
-CFLAGS += -g3
-endif
-
-LFLAGS = 
 DEPS = 
 OBJS = frame.o session.o stream.o yamux.o ../os/timespec.o
 
 %.o: %.c
-	$(CC) -c -o $@ $< $(CFLAGS)
+	$(CC) -c -o $@ $< $(CFLAGS) -std=c11
 
 all: $(OBJS)
 

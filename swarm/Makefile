@@ -1,16 +1,8 @@
-CC = gcc
-CFLAGS = -O0 -Wall -I../include -I../../c-protobuf -I../../c-multiaddr/include -std=c99
-
-ifdef DEBUG
-CFLAGS += -g3
-endif
-
-LFLAGS = 
 DEPS = 
 OBJS = swarm.o
 
 %.o: %.c $(DEPS)
-	$(CC) -c -o $@ $< $(CFLAGS)
+	$(CC) -c -o $@ $< $(CFLAGS) -std=c99
 
 all: $(OBJS)
 

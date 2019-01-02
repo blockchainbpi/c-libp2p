@@ -1,5 +1,3 @@
-*
-
 !.gitignore
 !Makefile
 !**/
@@ -7,4 +5,8 @@
 *.o
 .settings/language.settings.xml
 *.a
+*.so
+*.so.*
 test/testit_libp2p
+cscope.files
+cscope.out

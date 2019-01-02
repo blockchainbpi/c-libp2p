@@ -26,7 +26,6 @@ struct TransportDialer* libp2p_conn_tcp_transport_dialer_new();
  * @returns a new Dialer struct
  */
 struct Dialer* libp2p_conn_dialer_new(struct Libp2pPeer* peer, struct Peerstore* peerstore, struct RsaPrivateKey* rsa_private_key, struct SwarmContext* swarm) {
-	int success = 0;
 	struct Dialer* dialer = (struct Dialer*)malloc(sizeof(struct Dialer));
 	if (dialer != NULL) {
 		dialer->peerstore = peerstore;
@@ -166,7 +165,7 @@ int libp2p_conn_dialer_join_swarm(const struct Dialer* dialer, struct Libp2pPeer
 									return 0;
 								}
 								// then get an identify
-								struct Stream* identify_stream = libp2p_identify_stream_new(yamux_multistream, identify, 1);
+								libp2p_identify_stream_new(yamux_multistream, identify, 1);
 							}
 						} else {
 							libp2p_logger_error("dialer", "Expected a yamux context, but got a context of type %d.\n", peer->sessionContext->default_stream->stream_type);
